@@ -18,10 +18,9 @@ class MuseServer(ServerThread):
 		player = Player() 
 		player.open_stream() 
 		synthesizer = Synthesizer(osc1_waveform = Waveform.sine, osc1_volume = 1.0, use_osc2 = False)
-	
-		chord = [lE-100, lF-100, rF-100, rE-100]
 		number = ra.uniform(0.2, 1.0)
-		player.play_wave(synthesizer.generate_chord(chord, number))
+		player.play_wave(synthesizer.generate_constant_wave((lF - 1200)*((600-200)/(1200-750)) + 200), number)
+		player.play_wave(synthesizer.generate_constant_wave((rF - 1200)*((600-200)/(1200-750)) + 200), number)
 
 try:
     server = MuseServer()
